@@ -28,12 +28,20 @@ fun twoNumberSum1(array: MutableList<Int>, targetSum: Int): List<Int> {
 }
 
 fun twoNumberSum2(array: MutableList<Int>, targetSum: Int): List<Int> {
-    for (i in 0 until array.size){
-        for (j in i+1 until array.size){
-            if (array[i]+array[j]== targetSum){
-                return listOf(array[i], array[j])
-            }
+    array.sort()
+    var left= 0
+    var right = array.size-1
+
+    while (left<right){
+        var sum = array[left]+array[right]
+        if (sum ==targetSum){
+            return listOf(array[left],array[right])
+        }else if(sum<targetSum){
+            left++
+        }else if(sum>targetSum){
+            right--
         }
     }
+
     return listOf<Int>()
 }
