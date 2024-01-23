@@ -45,3 +45,17 @@ fun twoNumberSum2(array: MutableList<Int>, targetSum: Int): List<Int> {
 
     return listOf<Int>()
 }
+
+fun twoNumberSum3(array: MutableList<Int>, targetSum: Int): List<Int> {
+    val myMap: MutableMap<Int, Boolean> = mutableMapOf()
+    for (i in 0 until array.size){
+        val rest = targetSum-array[i]
+        if (myMap.containsKey(rest)){
+            return listOf(array[i], rest)
+        } else{
+            myMap[array[i]]=true
+        }
+    }
+
+    return listOf<Int>()
+}
