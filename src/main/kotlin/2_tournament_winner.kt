@@ -65,7 +65,8 @@ fun tournamentWinner(competitions: List<List<String>>, results: List<Int>): Stri
 }
 
 fun tournamentWinner2(competitions: List<List<String>>, results: List<Int>): String {
-    val competitionsMap: MutableMap<String, Int> = mutableMapOf()
+    val competitionsMap: MutableMap<String, Int> = mutableMapOf("" to 0)
+    var winner= ""
     for(i in 0 until competitions.size){
         val result= results[i]
         if (result == 0){
@@ -75,6 +76,9 @@ fun tournamentWinner2(competitions: List<List<String>>, results: List<Int>): Str
             }else {
                 competitionsMap[away] = 3
             }
+            if (competitionsMap[away]!!>competitionsMap[winner]!!){
+                winner=away
+            }
         }else{
             val home= competitions[i][0]
             if (competitionsMap.containsKey(home)){
@@ -82,16 +86,12 @@ fun tournamentWinner2(competitions: List<List<String>>, results: List<Int>): Str
             }else {
                 competitionsMap[home] = 3
             }
+            if (competitionsMap[home]!!>competitionsMap[winner]!!){
+                winner=home
+            }
         }
-    }
-    var winnerName = ""
-    var winnerPoint= 0
 
-    for (keyValue in competitionsMap){
-        if (keyValue.value > winnerPoint){
-            winnerName=keyValue.key
-            winnerPoint=keyValue.value
-        }
     }
-    return winnerName
+
+    return winner
 }
