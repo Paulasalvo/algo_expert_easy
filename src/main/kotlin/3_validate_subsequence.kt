@@ -28,3 +28,40 @@ fun isValidSubsequence(array: List<Int>, sequence: List<Int>): Boolean {
     }
     return contador==sequence.size
 }
+
+
+
+fun isValidSubsequence2(array: List<Int>, sequence: List<Int>): Boolean {
+    var contador=0
+    var indexArray=0
+    for (i in 0 until sequence.size){
+        for (j in indexArray until array.size){
+            if (sequence[i]==array[j]){
+                contador++
+                indexArray=j+1
+                break
+            }
+
+        }
+
+    }
+    return contador==sequence.size
+}
+
+
+fun isValidSubsequence3(array: List<Int>, sequence: List<Int>): Boolean {
+    var contador=0
+    var indexArray=0
+    for (i in 0 until sequence.size){
+        for (j in indexArray until array.size){
+            if (sequence[i]==array[j]){
+                contador++
+                indexArray=j+1
+                break
+            }
+
+        }
+
+    }
+    return contador==sequence.size
+}
