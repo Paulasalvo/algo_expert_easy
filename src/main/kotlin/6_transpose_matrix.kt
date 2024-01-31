@@ -1,10 +1,11 @@
 /**
-You're given a 2D array of integers matrix . Write a function that returns the transpose of the matrix. The
-transpose of a matrix is a flipped version of the original matrix across its main diagonal (which runs from
-top-left to bottom-right); it switches the row and column indices of the original matrix.
+You're given a 2D array of integers matrix . Write a function that returns the transpose of the
+matrix. The transpose of a matrix is a flipped version of the original matrix across its main
+diagonal (which runs from top-left to bottom-right); it switches the row and column indices of
+the original matrix.
 
-You can assume the input matrix always has at least 1 value; however its width and height are not necessarily
-the same.
+You can assume the input matrix always has at least 1 value; however its width and height are
+not necessarily the same.
 
 Sample Input #1
 matrix = [
@@ -25,7 +26,7 @@ matrix = [
 ]
 Sample Output #2[
 [1, 3, 5],
-[2, 4, 6]
+[2,  4, 6]
 ]
 Sample Input #3
 matrix = [
@@ -38,5 +39,20 @@ Sample Output #3[
 [2, 5, 8],
 [3, 6, 9]
 ]
-
  */
+
+
+fun transposeMatrix(matrix: MutableList<MutableList<Int>>): MutableList<MutableList<Int>> {
+    var transposerMatrix:MutableList<MutableList<Int>> = mutableListOf<MutableList<Int>>()
+
+    for (col in 0 until matrix[0].size){
+        var newArray: MutableList<Int> = mutableListOf()
+        for (row in 0 until matrix.size){
+            newArray.add(matrix[row][col])
+        }
+        transposerMatrix.add(newArray)
+    }
+
+
+    return transposerMatrix
+}
