@@ -49,10 +49,17 @@ fun transposeMatrix(matrix: MutableList<MutableList<Int>>): MutableList<MutableL
         var newArray: MutableList<Int> = mutableListOf()
         for (row in 0 until matrix.size){
             newArray.add(matrix[row][col])
+            println(newArray)
         }
         transposerMatrix.add(newArray)
+        println(transposerMatrix)
     }
 
 
     return transposerMatrix
+}
+
+
+fun main(){
+    transposeMatrix(mutableListOf(mutableListOf(10,20,30), mutableListOf(40,50,60), mutableListOf(80,90,100)))
 }
