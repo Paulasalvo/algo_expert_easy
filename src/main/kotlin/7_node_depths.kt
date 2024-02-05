@@ -20,3 +20,16 @@ Sample Output
 // Etc..
 // Summing all of these depths yields 16.
  */
+
+
+
+open class BinaryTree(value: Int) {
+    var value = value
+    var left: BinaryTree? = null
+    var right: BinaryTree? = null
+}
+
+fun nodeDepths(root: BinaryTree): Int {
+    // Write your code here.
+    return -1
+}
