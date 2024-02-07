@@ -23,13 +23,14 @@ Sample Output
 
 
 
+
 open class BinaryTree(value: Int) {
     var value = value
     var left: BinaryTree? = null
     var right: BinaryTree? = null
 }
 
-fun nodeDepths(root: BinaryTree): Int {
-    // Write your code here.
-    return -1
+fun nodeDepths(root: BinaryTree?, depth:Int = 0): Int {
+    if (root == null) return 0
+    return depth + nodeDepths(root.left, depth+1)+ nodeDepths(root.right, depth+1)
 }
