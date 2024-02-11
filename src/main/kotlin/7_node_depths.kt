@@ -1,3 +1,5 @@
+import java.util.*
+
 /**
 The distance between a node in a Binary Tree and the tree's root is called the node's depth. Write a function
 that takes in a Binary Tree and returns the sum of its nodes' depths.
@@ -29,8 +31,38 @@ open class BinaryTree(value: Int) {
     var left: BinaryTree? = null
     var right: BinaryTree? = null
 }
-
+open class level(root:BinaryTree?, depth:Int){
+    val root= root
+    val depth= depth
+}
 fun nodeDepths(root: BinaryTree?, depth:Int = 0): Int {
     if (root == null) return 0
     return depth + nodeDepths(root.left, depth+1)+ nodeDepths(root.right, depth+1)
 }
+
+fun nodeDepths2 (root:BinaryTree):Int{
+    var sumOfDepths= 0
+    val stack = Stack<level>()
+    stack.add(level(root,0))
+    while (stack.size>0){
+        val top= stack.pop()
+        val node = top.root
+        val depth = top.depth
+        if (node== null) continue
+        sumOfDepths+=depth
+        stack.add(level(node.left, depth+1))
+        stack.add(level(node.right, depth+1))
+    }
+    return sumOfDepths
+}
+
+fun main(){
+    val root= BinaryTree(1)
+    root.left=BinaryTree(2)
+    root.right=BinaryTree(3)
+
+    println(nodeDepths2(root))
+}
+
+
+

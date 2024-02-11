@@ -18,9 +18,6 @@ Sample Output= 13
  */
 
 
-
-
-
 import kotlin.math.abs
 
 open class BST(value: Int) {
