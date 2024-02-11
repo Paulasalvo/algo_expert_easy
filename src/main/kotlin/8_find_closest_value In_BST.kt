@@ -2,9 +2,10 @@
 
 Write a function that takes in a Binary Search Tree (BST) and a target integer value and returns the closest
 value to that target value contained in the BST.You can assume that there will only be one closest value.
-Each BST  node has an integer value, a left  child node, and a right  child node. A node is said to be a valid BST  node if and only if it satisfies the BST
-property: its value  is strictly greater than the values of every node to its left; its value  is less than or equal to the values
-of every node to its right; and its children nodes are either valid BST  nodes themselves or None /null.
+Each BST  node has an integer value, a left  child node, and a right  child node. A node is said to be a valid BST
+node if and only if it satisfies the BST property: its value is strictly greater than the values of every node to its left;
+its value is less than or equal to the values of every node to its right; and its children nodes are either valid BST
+nodes themselves or None /null.
 Sample Input
  tree  =   10
          /     \
@@ -26,26 +27,38 @@ open class BST(value: Int) {
     var right: BST? = null
 }
 
+
 fun findClosestValueInBst(tree: BST, target: Int): Int {
-    var closestValue = tree.value
+    var currentValue = tree.value
 
-    var currentParent: BST? = tree
+    currentValue = findClosestValueInBstHelper(tree, target, currentValue)
 
-    while (currentParent != null){
-        val diffCurrentValue = abs(currentParent.value - target)
-        val diffClosestValue = abs(closestValue - target)
-        if (diffCurrentValue < diffClosestValue){
-            closestValue = currentParent.value
-        }
-        if (target < currentParent.value && currentParent.left != null) {
-            currentParent = currentParent.left!!
-        } else if (target > currentParent.value && currentParent.right != null) {
-            currentParent = currentParent.right!!
-        }else{
-            currentParent = null
-        }
+    return currentValue
+}
 
+fun findClosestValueInBstHelper(tree: BST?, target: Int, closestValue: Int): Int{
+    if (closestValue == target || tree == null) {
+        return closestValue
+    }
+    var closest = closestValue
+    val currentDiff = abs(closestValue - target)
+    val candidateDiff = abs(tree.value - target)
+
+    if (candidateDiff < currentDiff){
+        closest = tree.value
     }
 
-    return closestValue
+    if(tree.value < target){
+        return findClosestValueInBstHelper(tree.right, target, closest)
+    }else {
+        return findClosestValueInBstHelper(tree.left, target, closest)
+    }
+}
+
+fun main() {
+    val root= BST(1)
+    root.left=BST(2)
+    root.right=BST(3)
+
+    println(findClosestValueInBst(root, 12))
 }
