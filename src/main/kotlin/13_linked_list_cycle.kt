@@ -21,6 +21,6 @@ class ListNode(value: Int) {
     fun hasCycle(head: ListNode?): Boolean {
         val nodes = mutableSetOf<ListNode>()
 
-        return true
+        return false
     }
 }
