@@ -17,10 +17,25 @@ Explanation: There is a cycle in the linked list, where the tail connects to the
 
 class ListNode(value: Int) {
     var next: ListNode? = null
-    }
     fun hasCycle(head: ListNode?): Boolean {
         val nodes = mutableSetOf<ListNode>()
-
-        return false
+        return helperHasCycle(head, nodes)
     }
+    fun helperHasCycle(node:ListNode?, setNodes:MutableSet<ListNode>):Boolean{
+        if (node==null) return false
+        if(setNodes.contains(node)) return true
+        setNodes.add(node)
+        return helperHasCycle(node.next, setNodes)
+    }
+}
+
+fun main (){
+    val head= ListNode(10)
+    val node1=ListNode(20)
+    val node2= ListNode(30)
+    head.next=node1
+    node1.next=node2
+   // node2.next=head
+
+    println(head.hasCycle(head))
 }
